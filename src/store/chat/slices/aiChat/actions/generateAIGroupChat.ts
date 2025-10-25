@@ -5,6 +5,7 @@ import {
   buildGroupChatSystemPrompt,
   filterMessagesForAgent,
 } from '@lobechat/prompts';
+import { ChatMessage, CreateMessageParams, SendGroupMessageParams } from '@lobechat/types';
 import { produce } from 'immer';
 import { StateCreator } from 'zustand/vanilla';
 
@@ -17,7 +18,6 @@ import { sessionSelectors } from '@/store/session/selectors';
 import { userProfileSelectors } from '@/store/user/selectors';
 import { getUserStoreState } from '@/store/user/store';
 import { ChatErrorType } from '@/types/fetch';
-import { ChatMessage, CreateMessageParams, SendGroupMessageParams } from '@/types/message';
 import { merge } from '@/utils/merge';
 import { setNamespace } from '@/utils/storeDebug';
 
@@ -681,6 +681,7 @@ export const chatAiGroupChat: StateCreator<
             msg.role === 'user' ? member.id === 'user' : member.id === msg.agentId,
           );
           const authorName = authorInfo?.title || (msg.role === 'user' ? realUserName : 'Unknown');
+          const authorId = msg.role === 'user' ? 'user' : msg.agentId || 'unknown';
 
           // Keep user message as-is
           if (msg.role === 'user') {
@@ -692,7 +693,7 @@ export const chatAiGroupChat: StateCreator<
 
           return {
             ...msg,
-            content: `<author_name_do_not_include_in_your_response>${authorName}</author_name_do_not_include_in_your_response>${msg.content}`,
+            content: `<author_name_do_not_include_in_your_response name="${authorName}" id="${authorId}" />${msg.content}`,
           };
         });
 

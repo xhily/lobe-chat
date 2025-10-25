@@ -1,5 +1,5 @@
 import { AgentRuntimeError, ChatCompletionErrorPayload } from '@lobechat/model-runtime';
-import { ChatErrorType, TracePayload, TraceTagMap } from '@lobechat/types';
+import { ChatErrorType, TracePayload, TraceTagMap , ChatMessage } from '@lobechat/types';
 import { PluginRequestPayload, createHeadersWithPluginSettings } from '@lobehub/chat-plugin-sdk';
 import { merge } from 'lodash-es';
 import { ModelProvider } from 'model-bank';
@@ -22,11 +22,8 @@ import {
   userGeneralSettingsSelectors,
   userProfileSelectors,
 } from '@/store/user/selectors';
-import { ChatMessage } from '@/types/message';
 import type { ChatStreamPayload, OpenAIChatMessage } from '@/types/openai/chat';
-import {
-  fetchWithInvokeStream,
-} from '@/utils/electron/desktopRemoteRPCFetch';
+import { fetchWithInvokeStream } from '@/utils/electron/desktopRemoteRPCFetch';
 import { createErrorResponse } from '@/utils/errorResponse';
 import {
   FetchSSEOptions,
@@ -273,6 +270,12 @@ class ChatService {
       },
       { ...res, apiMode, model },
     );
+
+    // Convert null to undefined for model params to prevent sending null values to API
+    if (payload.temperature === null) payload.temperature = undefined;
+    if (payload.top_p === null) payload.top_p = undefined;
+    if (payload.presence_penalty === null) payload.presence_penalty = undefined;
+    if (payload.frequency_penalty === null) payload.frequency_penalty = undefined;
 
     const sdkType = resolveRuntimeProvider(provider);
 

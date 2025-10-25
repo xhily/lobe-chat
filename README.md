@@ -389,7 +389,7 @@ In addition, these plugins are not limited to news aggregation, but can also ext
 | [Bing_websearch](https://lobechat.com/discover/plugin/Bingsearch-identifier)<br/><sup>By **FineHow** on **2024-12-22**</sup> | Search for information from the internet base BingApi<br/>`bingsearch`                                                  |
 | [Google CSE](https://lobechat.com/discover/plugin/google-cse)<br/><sup>By **vsnthdev** on **2024-12-02**</sup>               | Searches Google through their official CSE API.<br/>`web` `search`                                                      |
 
-> 📊 Total plugins: [<kbd>**42**</kbd>](https://lobechat.com/discover/plugins)
+> 📊 Total plugins: [<kbd>**41**</kbd>](https://lobechat.com/discover/plugins)
 
  <!-- PLUGIN LIST -->
 
@@ -902,7 +902,7 @@ This project is [LobeHub Community License](./LICENSE) licensed.
 [github-release-shield]: https://img.shields.io/github/v/release/lobehub/lobe-chat?color=369eff&labelColor=black&logo=github&style=flat-square
 [github-releasedate-link]: https://github.com/lobehub/lobe-chat/releases
 [github-releasedate-shield]: https://img.shields.io/github/release-date/lobehub/lobe-chat?labelColor=black&style=flat-square
-[github-stars-link]: https://github.com/lobehub/lobe-chat/network/stargazers
+[github-stars-link]: https://github.com/lobehub/lobe-chat/stargazers
 [github-stars-shield]: https://img.shields.io/github/stars/lobehub/lobe-chat?color=ffcb47&labelColor=black&style=flat-square
 [github-trending-shield]: https://trendshift.io/api/badge/repositories/2256
 [github-trending-url]: https://trendshift.io/repositories/2256
